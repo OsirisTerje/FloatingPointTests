@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -30,6 +31,44 @@ namespace ClassLibrary31
             var d2 = Math.Asin(d1); 
 
             Assert.That(i, Is.EqualTo(d2), $"{d2} is not equal to {i}");
+        }
+
+        [Test]
+        public void ThisOneShouldWork21()
+        {
+            double result = 0;
+            double d = 1/5d;
+            var d1 = Math.Sin(d);
+            var d2 = Math.Sin(-d);
+            var d3 = d1 + d2;
+
+            Assert.That(d3, Is.EqualTo(0), $"{d3} is not equal to {result}");
+        }
+
+        [Test]
+        public void ThisOneShouldWork22()
+        {
+            double result = 0;
+            double d = 1 / 5d;
+            var d1 = 2*Math.Sin(d)*Math.Cos(d)-2*Math.Cos(d)*Math.Sin(d);
+            
+
+            Assert.That(d1, Is.EqualTo(0), $"{d1} is not equal to {result}");
+        }
+
+
+        [TestCase(1d / 3)]
+        [TestCase(0.6111)]
+        [TestCase(0.6113)]
+        [TestCase(1d/5)]
+        [TestCase(0.4365)]
+        public void ThisOneShouldWork23(double d)
+        {
+            double expected = 1.0d;
+            var d1 = Math.Sin(d) * Math.Sin(d) + Math.Cos(d) * Math.Cos(d);
+
+
+            Assert.That(d1, Is.EqualTo(expected), $"{d1} is not equal to {expected}");
         }
 
 
